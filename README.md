@@ -34,3 +34,7 @@ _body_
   "password": "111111"
 }
 ```
+
+### AuthContext
+
+- Wrap the app Component in \_app.js with AuthProvider in order to have the auth state values available throughout the app
