@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NEXT_URL } from 'config/index';
 
@@ -10,6 +10,26 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const router = useRouter();
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const PROTECTED_ROUTE_PATHS = ['/protected'];
+
+  const checkUser = async () => {
+    try {
+      const res = await axios.get(`${NEXT_URL}/api/user`);
+      // console.log('in checkUser', res.data.data.user);
+      setUser(res.data.data.user);
+    } catch (error) {
+      console.log(error);
+      setUser(null);
+      if (PROTECTED_ROUTE_PATHS.includes(router.pathname)) {
+        router.push('/auth/login');
+      }
+    }
+  };
 
   // userData: { name, email, password }
   const register = async (userData) => {

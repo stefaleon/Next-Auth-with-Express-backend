@@ -29,10 +29,13 @@ export default function Header() {
         </ul>
         <ul>
           {user ? (
-            <li>
-              <button id='logout-button' onClick={() => logout()}>
-                Logout
-              </button>
+            <li id='email-logout-container'>
+              <div id='user-email'>{user.email}</div>
+              <div>
+                <button id='logout-button' onClick={() => logout()}>
+                  Logout
+                </button>
+              </div>
             </li>
           ) : (
             <li>

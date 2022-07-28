@@ -8,12 +8,6 @@ export default function ProtectedPage() {
   const router = useRouter();
   const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/auth/login');
-    }
-  }, [router, user]);
-
   if (!user) return null;
   return (
     <Layout>
