@@ -32,15 +32,32 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data.user);
       router.push('/protected');
     } catch (error) {
-      setError(error.message);
+      if (error.response.status === 400 || error.response.status === 401) {
+        setError('Please check your credentials');
+      } else {
+        setError(error.message);
+      }
       setTimeout(() => {
         setError(null);
       }, 3000);
     }
   };
 
+  const logout = async () => {
+    try {
+      router.push('/');
+      // setting the timeout to avoid the blink of the Login page before router pushes to root
+      setTimeout(() => {
+        setUser(null);
+      }, 0);
+    } catch (error) {
+      console.log(error);
+      router.push('/error');
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, error, register, login }}>
+    <AuthContext.Provider value={{ user, error, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

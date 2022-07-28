@@ -3,7 +3,7 @@ import Link from 'next/link';
 import AuthContext from 'context/AuthContext';
 
 export default function Header() {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <header>
@@ -30,9 +30,9 @@ export default function Header() {
         <ul>
           {user ? (
             <li>
-              <Link href='/auth/logout'>
-                <a>Logout</a>
-              </Link>
+              <button id='logout-button' onClick={() => logout()}>
+                Logout
+              </button>
             </li>
           ) : (
             <li>
