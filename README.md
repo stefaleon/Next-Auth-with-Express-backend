@@ -1,5 +1,7 @@
 ## Auth with Next.js
 
+_A known problem with JWT authentication is that persisting to local storage introduces a security issue. An improvement is made by using HTTP-only cookies on the server side. The Next.js native API provides a means to easily implement this feature._
+
 - The Basic Express API (https://github.com/stefaleon/Basic-Express-API) is used as the external back-end.
 
 - The axios calls in the Next API methods are made towards URLs adjusted to the specific external API.
@@ -50,3 +52,10 @@ _body_
 
 - Even though the related link is hidden in the navbar, the protected page is currently accessible by entering the related url (http://localhost:3000/protected) manually in the browser's address bar.
 - To fix this, redirect to the login page if "user" is not available in the auth state.
+
+## Persist the authenticated user with a server side HTTP-only cookie
+
+### Set the JWT in a server side cookie
+
+- Set the cookie in the response headers as we login. It now becomes available in `req.headers.cookie`.
+- Confirm the availability for subsequent requests by use of the checkCookie Next API route.

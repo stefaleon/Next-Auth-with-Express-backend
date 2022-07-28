@@ -120,3 +120,21 @@ footer {
 #logout-button:hover {
   opacity: 0.5;
 }
+
+#check-cookie-btn {
+  padding: 10px;
+  background-color: #4caf50;
+  border: 1px solid green;
+  color: white;
+  cursor: pointer;
+}
+
+#check-cookie-btn:hover {
+  opacity: 0.8;
+}
+
+#cookie-div {
+  margin-top: 10px;
+  max-width: 200px;
+  word-wrap: break-word;
+}
