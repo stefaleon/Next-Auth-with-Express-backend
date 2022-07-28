@@ -9,17 +9,15 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  const { register, error } = useContext(AuthContext);
+  const { register, error, setError } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (password !== passwordConfirm) {
-      toast.error('Passwords do not match!');
+      setError('Passwords do not match!');
       return;
     }
-
-    register({ username, email, password });
+    register({ name: username, email, password });
   };
 
   return (
