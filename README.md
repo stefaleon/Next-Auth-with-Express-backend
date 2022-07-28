@@ -65,3 +65,8 @@ _body_
 - Check if "user" exists in state on each AuthProvider load. Do so by calling the `/api/user` route in the Next API, which in turn calls the `api/users/me` route in the external Express API.
 - The request to the external API contains the JWT in the headers, which is extracted by parsing the `req.headers.cookie`.
 - If the check fails, set "user" to null and, if we are in a protected route, redirect to login page.
+
+### Log out by setting a zero expiration cookie
+
+- Since the server side HTTP-only cookie persists, the log out functionality is broken. If we refresh, we still have the cookie in the browser storage.
+- In order to properly log out, we need to set antoher cookie with its expiration set to 0.

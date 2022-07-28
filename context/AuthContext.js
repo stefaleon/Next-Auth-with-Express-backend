@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
+      await axios.get(`${NEXT_URL}/api/logout`);
       router.push('/');
       // setting the timeout to avoid the blink of the Login page before router pushes to root
       setTimeout(() => {
