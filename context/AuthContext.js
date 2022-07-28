@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data.user);
       router.push('/protected');
     } catch (error) {
-      setError(data.message);
+      setError(error.message);
       setTimeout(() => {
         setError(null);
       }, 3000);
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data.user);
       router.push('/protected');
     } catch (error) {
-      setError(data.message);
+      setError(error.message);
       setTimeout(() => {
         setError(null);
       }, 3000);

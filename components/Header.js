@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import Link from 'next/link';
+import AuthContext from 'context/AuthContext';
 
 export default function Header() {
+  const { user } = useContext(AuthContext);
+
   return (
     <header>
       <nav>
@@ -15,18 +19,28 @@ export default function Header() {
               <a>About</a>
             </Link>
           </li>
-          <li>
-            <Link href='/protected'>
-              <a>Protected</a>
-            </Link>
-          </li>
+          {user && (
+            <li>
+              <Link href='/protected'>
+                <a>Protected</a>
+              </Link>
+            </li>
+          )}
         </ul>
         <ul>
-          <li>
-            <Link href='/auth/login'>
-              <a>Login</a>
-            </Link>
-          </li>
+          {user ? (
+            <li>
+              <Link href='/auth/logout'>
+                <a>Logout</a>
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link href='/auth/login'>
+                <a>Login</a>
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
